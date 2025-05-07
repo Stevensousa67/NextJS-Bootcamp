@@ -1,9 +1,9 @@
 import classes from './Post.module.css';
 
-export default function Post({ name, message }) {
+export default function Post({ author, message }) {
     return (
         <li className={classes.post}>
-            <p className={classes.author}>{name}</p>
+            <p className={classes.author}>{author}</p>
             <p className={classes.text}>{message}</p>
         </li>
     )

@@ -1,26 +1,25 @@
-import Post from './components/Post';
-import PostsList from './components/PostsList';
+import { useState } from "react";
+import MainHeader from "./components/MainHeader";
+import PostsList from "./components/PostsList";
 
 function App() {
-  const names = ['Steven', 'Max'];
-  const message = ['React.js is awesome!', 'React.js is great!'];
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const getRandomName = () => (Math.random() > 0.5 ? names[0] : names[1]);
-  const getRandomMessage = () => (Math.random() > 0.5 ? message[0] : message[1]);
+  function hideModalHandler() {
+    setIsModalOpen(false);
+  }
+  function showModalHandler() {
+    setIsModalOpen(true);
+  }
 
-  const posts = [
-    { name: getRandomName(), message: getRandomMessage() },
-    { name: getRandomName(), message: getRandomMessage() },
-    { name: getRandomName(), message: getRandomMessage() },
-    { name: getRandomName(), message: getRandomMessage() },
-    { name: getRandomName(), message: getRandomMessage() },
-  ];
-
-  return(
-    <main>
-      <PostsList posts={posts} />
-    </main>
-  )
+  return (
+    <>
+      <MainHeader onCreatePost={showModalHandler}/>
+      <main>
+        <PostsList isModalOpen={isModalOpen} onStopPosting={hideModalHandler}/>
+      </main>
+    </>
+  );
 }
 
 export default App;
